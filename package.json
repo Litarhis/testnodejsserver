@@ -1,0 +1,11 @@
+{
+  "name": "moviehunter",
+  "version": "1.0.0",
+  "description": "test for backend",
+  "main": "./private/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "litarhis",
+  "license": "ISC"
+}
