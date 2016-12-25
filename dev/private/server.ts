@@ -1,6 +1,6 @@
-(function() {
+module.exports = { start: function() {
   const http = require('http');
-  const  router = require('./Router');
+  const  router = require('./router/Router');
   const  fs = require('fs');
 
   http.createServer((request, response) => {
@@ -16,4 +16,4 @@
     });
 
   }).listen(4444);
-}());
+}};

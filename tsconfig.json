@@ -10,7 +10,7 @@
         "declaration": false,
         "noImplicitAny": false,
         "noImplicitUseStrict": false,
-        "outDir": "dist/private",
+        "outDir": "dist",
         "removeComments": true,
         "noLib": false,
         "preserveConstEnums": true,

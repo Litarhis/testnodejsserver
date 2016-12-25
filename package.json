@@ -1,14 +1,14 @@
 {
   "name": "moviehunter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "test for backend",
-  "main": "./dist/private/server.js",
+  "main": "./dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "litarhis",
   "license": "ISC",
   "dependencies": {
-    "httpdispatcher": "^2.0.1"
+    "mongoose": "^4.7.4"
   }
 }
