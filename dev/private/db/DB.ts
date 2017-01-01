@@ -16,10 +16,6 @@ module.exports = (function() {
       "Surname": "Mylwnas",
       "Tel": 8319839289
     });
-    mylwni.save(function(error, mylwni) {
-      if(error) console.log(error);
-      console.log(mylwni + " added");
-    });
   });
 
 
