@@ -4,10 +4,7 @@
   "description": "test for backend",
   "main": "./dist/app.js",
   "scripts": {
-    "test": "jshint ./dist/app.js"
-  },
-  "jshintConfig": {
-    "esversion": 6
+    "test": "jshint ./dist/private ./dist/app.js"
   },
   "author": "litarhis",
   "license": "ISC",
