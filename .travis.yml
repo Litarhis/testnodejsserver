@@ -1,5 +1,3 @@
-before_install:
-  chmod +x ./node_modules/jshint/bin/jshint && chmod +x ./node_modules/jshint/dist/jshint.js && chmod +x ./node_modules/jshint/src/jshint.js
 install: true
 language: node_js
 node_js:
