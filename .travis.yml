@@ -3,3 +3,5 @@ install: true
 language: "node_js"
 node_js:
   6.0
+notifications:
+  slack: moviehunter:v72ygeIb9R3TLnm4h52wVWfv
