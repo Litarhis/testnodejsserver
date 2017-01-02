@@ -1,7 +1,7 @@
 before_install:
   chmod +x ./node_modules/jshint/bin/jshint
 install: true
-language: "node_js"
+language: node_js
 node_js:
   6.0
 notifications:
