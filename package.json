@@ -4,7 +4,7 @@
   "description": "test for backend",
   "main": "./dist/app.js",
   "scripts": {
-    "test": "jshint --spec"
+    "test": "jshint ./dist/app.js"
   },
   "jshintConfig": {
     "esversion": 6
