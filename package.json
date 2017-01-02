@@ -6,6 +6,9 @@
   "scripts": {
     "test": "jshint ./dist/app.js"
   },
+  "jshintConfig": {
+    "esversion": 6
+  },
   "author": "litarhis",
   "license": "ISC",
   "dependencies": {
