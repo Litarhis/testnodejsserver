@@ -4,7 +4,7 @@
   "description": "test for backend",
   "main": "./dist/app.js",
   "scripts": {
-    "test": "./node_modules/jshint/bin/jshint ./dist/app.js"
+    "test": "jshint ./dist/app.js"
   },
   "author": "litarhis",
   "license": "ISC",
