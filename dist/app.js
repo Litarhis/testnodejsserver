@@ -1,4 +1,4 @@
-const server = require('./private/server');
 const database = require('./private/db/DB');
-server.start();
+const server = require('./private/server');
+server.start(database);
 //# sourceMappingURL=app.js.map

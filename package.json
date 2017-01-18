@@ -4,7 +4,8 @@
   "description": "test for backend",
   "main": "./dist/app.js",
   "scripts": {
-    "test": "jshint ./dist/private ./dist/app.js"
+    "test": "jshint ./dist/private ./dist/app.js",
+    "start": "node ./dist/app.js"
   },
   "jshintConfig": {
     "esversion": 6
@@ -12,9 +13,11 @@
   "author": "litarhis",
   "license": "ISC",
   "dependencies": {
+    "formidable": "^1.1.1",
     "mongoose": "^4.7.4"
   },
   "devDependencies": {
+    "express": "^4.14.0",
     "jshint": "^2.9.4"
   }
 }
