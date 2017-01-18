@@ -3,13 +3,15 @@ module.exports = {
     const path = require('path');
     const formidable = require('formidable');
     const express = require('express');
-    const hash = require('crypto').createHash('sha256');
+    const crypto = require('crypto');
     const app = express();
 
     /** home */
     app.get('/', (req, res) => {
       res.sendFile(path.join(__dirname, "../public/views", "home.view.html"));
     });
+
+    // TODO: clean user input from possible JS code
 
     /** login routing */
     app.route('/login')
@@ -20,6 +22,7 @@ module.exports = {
         let form = new formidable.IncomingForm();
 
         form.parse(req, (err, fields, files) => {
+          const hash = crypto.createHash('sha256');
           hash.update(fields.pass);
           res.redirect('/');
         });
@@ -27,7 +30,7 @@ module.exports = {
 
     /**
      * signup routing
-     * database variable used to emit createUser event 
+     * database variable used to emit createUser event
      */
     app.route('/signup')
       .get((req, res) => {
@@ -37,6 +40,7 @@ module.exports = {
         let form = new formidable.IncomingForm();
 
         form.parse(req, (err, fields, files) => {
+          const hash = crypto.createHash('sha256');
           hash.update(fields.pass);
           database.emit('createUser', fields.email, fields.username, hash.digest('hex'));
 

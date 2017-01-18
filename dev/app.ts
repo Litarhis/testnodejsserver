@@ -9,5 +9,3 @@ const server = require('./private/server');
 
 // Launching SERVER
 server.start(database);
-
-// Database Connection
