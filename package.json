@@ -3,6 +3,10 @@
   "version": "1.0.2",
   "description": "test for backend",
   "main": "./dist/app.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Litarhis/testnodejsserver"
+  },
   "scripts": {
     "test": "jshint ./dist/private ./dist/app.js",
     "start": "node ./dist/app.js"
@@ -10,7 +14,7 @@
   "jshintConfig": {
     "esversion": 6
   },
-  "author": "litarhis",
+  "author": "Manos Mertzianis <manosmertzianis@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "formidable": "^1.1.1",

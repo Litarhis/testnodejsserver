@@ -2,7 +2,6 @@
 // ***************************************
 module.exports = (function() {
   const mongoose = require('mongoose');
-  const Contact = require('./models/ContactsModel');
   const createUser = require('./models/createUserModel');
 
   mongoose.connect('mongodb://localhost:27017/learn');
