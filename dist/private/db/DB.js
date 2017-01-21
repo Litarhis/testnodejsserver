@@ -1,21 +1,13 @@
 module.exports = (function () {
     const mongoose = require('mongoose');
-    const createUser = require('./models/createUserModel');
+    console.log("Connecting to MongoDB Server");
     mongoose.connect('mongodb://localhost:27017/learn');
     let db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', () => {
-        console.log("Connection with the database established");
+        console.log("Connection with the database established on PORT: " + 27017);
+        const server = require('./../server');
+        server.start();
     });
-    db.on('createUser', (email, username, password) => {
-        (new createUser({
-            "email": email,
-            "username": username,
-            "password": password
-        })).save();
-    });
-    db.on('findUserOnlyOne', (email, username) => {
-    });
-    return db;
 }());
 //# sourceMappingURL=DB.js.map
