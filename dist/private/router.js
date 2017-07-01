@@ -3,7 +3,7 @@ module.exports = {
         const pages = {
             "home": "./Routing/homeRouting",
             "login": "./Routing/loginRouting",
-            "signup": "./Routing/signupRouting"
+            "register": "./Routing/signupRouting"
         };
         links.map(n => {
             const routing = require(pages[n]);

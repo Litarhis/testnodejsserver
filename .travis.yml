@@ -1,9 +1,0 @@
-before_install:
-  chmod +x ./node_modules/.bin/jshint
-install:
-  npm install
-language: node_js
-node_js:
-  6
-notifications:
-  slack: moviehunter:v72ygeIb9R3TLnm4h52wVWfv
