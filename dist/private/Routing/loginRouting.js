@@ -46,7 +46,7 @@ module.exports = {
                             }
                             else {
 															if(user.password === hash.digest('hex')){
-																console.log((new Date()) + " New connection from: " + user.username);
+																console.log((new Date()) + " New connection from " + user.username);
 
 																res.json({
 																	error: false,
