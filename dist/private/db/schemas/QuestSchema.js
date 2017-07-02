@@ -10,4 +10,6 @@ const QuestSchema = new mongoose.Schema({
   date_expires: Date
 });
 
+QuestSchema.index({"_id": 1});
+
 module.exports = QuestSchema;

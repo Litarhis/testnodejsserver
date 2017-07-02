@@ -4,14 +4,69 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body>
+  <body style="display:none">
     <form class="" method="post">
       <input type="text" name="fullname" placeholder="fullname"><br>
       <input type="email" name="email" placeholder="email"><br>
       <input type="text" name="username" placeholder="username"><br>
       <input type="password" name="pass" placeholder="password"><br>
       <input type="password" name="passRe" placeholder="retype password"><br>
+      <input type="hidden" name="qrssid" id="ssid">
       <button type="submit" name="submitButton">Signup</button>
     </form>
+
+    <script type="text/javascript">
+      var form = document.querySelector('form');
+
+      if(localStorage.getItem("qrssid")) {
+        document.getElementById("ssid").value = localStorage.getItem("qrssid")?localStorage.getItem("qrssid"):"";
+        var data = new FormData(form);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            let res =  JSON.parse(this.responseText);
+            if(res){
+              if(!res.error){
+                if(res.sess_renewed) {
+                  window.location="/";
+                }
+              }
+              if(res.error && res.sess_expired) {
+                console.log("Delete ssid");
+                localStorage.removeItem("qrssid");
+                document.querySelector("body").style.display = "initial";
+              }
+            }
+          }
+        };
+        ajax = xhttp;
+        xhttp.open("POST", "/user/register", true);
+        xhttp.send(data);
+      }
+
+      form.onsubmit = function(e){
+        e.preventDefault();
+        document.getElementById("ssid").value = localStorage.getItem("qrssid")?localStorage.getItem("qrssid"):"";
+        var data = new FormData(form);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            let res =  JSON.parse(this.responseText);
+            if(res){
+              if(!res.error){
+                window.location="/";
+              }
+              if(res.error && res.sess_expired) {
+                console.log("Delete ssid");
+                localStorage.removeItem("qrssid");
+                window.location='/user/login';
+              }
+            }
+          }
+        };
+        xhttp.open("POST", "/user/register", true);
+        xhttp.send(data);
+      }
+    </script>
   </body>
 </html>

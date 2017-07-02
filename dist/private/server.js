@@ -1,8 +1,10 @@
 module.exports = {
     start: function () {
         const path = require('path');
+        const config = require('./config.json');
         const express = require('express');
         const app = express();
+        
         app.set('json spaces', 2);
         const router = require('./router');
         console.log((new Date()) + " Creating Server...");
@@ -11,7 +13,7 @@ module.exports = {
             'login',
             'register'
         ]);
-        app.listen(4444);
+        app.listen(config.server_port);
         console.log((new Date()) + " Server now listening on port: " + 4444 + " (by default)");
         console.log((new Date()) + " APIs are ready to serve")
         console.log("If you want to terminate the server press Ctrl+C")

@@ -1,0 +1,6 @@
+{
+  "server_port": 4444,
+  "db": "qr_quest",
+  "db_port": 27017,
+  "cookies_time": 300
+}

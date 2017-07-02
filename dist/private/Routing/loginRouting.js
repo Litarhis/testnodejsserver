@@ -2,8 +2,18 @@ module.exports = {
     link: function LoginRouting(app) {
         const crypto = require('crypto');
         const path = require('path');
+
         const formidable = require('formidable');
+				const randomstring = require("randomstring");
+
         const User = require('./../db/Models/UserModel');
+				const Session = require('./../db/Models/SessionModel');
+
+				const sessioning = require('./tools/cookieHandling');
+
+				const config = require('./../config.json');
+
+
         app.route('/user/login')
             .get((req, res) => {
             res.sendFile(path.join(__dirname, "../../public/views", "login.view.html"));
@@ -21,7 +31,7 @@ module.exports = {
                         }
                     }
                     catch (e) {
-                        console.log((new Date()) + "Error occured while parsing form from POST method on SIGNUP page: " + e.message);
+                        console.log((new Date()) + "Error occured while parsing form from POST method on Login page: " + e.message);
                     }
                     const hash = crypto.createHash('sha256');
                     hash.update(fields.pass);
@@ -29,6 +39,9 @@ module.exports = {
                         if (err) {
                             res.json({
 															error: true,
+															sess_expired: false,
+															sess_renewed: false,
+															sess_error: false,
 															user_not_found: false,
 															bad_password: false,
 															response_msg: "Bad criteria on search"
@@ -39,6 +52,9 @@ module.exports = {
 																console.log((new Date()) + " user " + fields.username + " not found in database");
 																res.json({
 																	error: true,
+																	sess_expired: false,
+																	sess_renewed: false,
+																	sess_error: false,
 																	user_not_found: true,
 																	bad_password: false,
 																	response_msg: "User not found"
@@ -46,19 +62,56 @@ module.exports = {
                             }
                             else {
 															if(user.password === hash.digest('hex')){
-																console.log((new Date()) + " New connection from " + user.username);
+																//fields must have qrssid and platform
+																if(fields.qrssid){
+																	sessioning(res, {user_not_found: false}, fields, Session, config, true);
+																} else {
+																	let theSsid = randomstring.generate(24);
+																	let newSession = new Session({
+																		ssid: theSsid,
+																		userId: user._id,
+																		expir: new Date(Date.now() + config.cookies_time*1000),
+																		platform: fields.platform
+																	});
 
-																res.json({
-																	error: false,
-																	user_not_found: false,
-																	bad_password: false,
-																	response_msg: "Validation succeded"
-																});
+																	newSession.save((err, newsess) => {
+																		if(!err){
+																			console.log((new Date) + " New Session:\n" + newsess);
+											
+																			res.json({
+																				error: false,
+																				sess_expired: false,
+																				sess_renewed: false,
+																				sess_error: false,
+																				bad_password: false,
+																				response_msg: "New session successful",
+																				user_not_found:false,
+																				ssid: theSsid
+																			});
+																		} else {
+																			console.log((new Date) + " Error while inserting new session");
+
+																			res.json({
+																				error: true,
+																				sess_expired: false,
+																				sess_renewed: false,
+																				sess_error: true,
+																				bad_password: false,
+																				response_msg: "Error while inserting new session",
+																				user_not_found:false
+																			});
+																		}
+																	});
+																}
+																// TODO: add session													
 															} else {
 																console.log((new Date()) + " Failed connection due to wrong pass for: " + user.username);
 
 																res.json({
 																	error: true,
+																	sess_expired: false,
+																	sess_renewed: false,
+																	sess_error: false,
 																	user_not_found: false,
 																	bad_password: true,
 																	response_msg: "Bad password"
