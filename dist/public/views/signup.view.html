@@ -18,6 +18,7 @@
     <script type="text/javascript">
       var form = document.querySelector('form');
 
+      // if qrssid exists already, check status so not to load page
       if(localStorage.getItem("qrssid")) {
         document.getElementById("ssid").value = localStorage.getItem("qrssid")?localStorage.getItem("qrssid"):"";
         var data = new FormData(form);
@@ -39,11 +40,13 @@
             }
           }
         };
-        ajax = xhttp;
         xhttp.open("POST", "/user/register", true);
         xhttp.send(data);
+      } else {
+        document.querySelector("body").style.display = "initial";
       }
 
+      // form
       form.onsubmit = function(e){
         e.preventDefault();
         document.getElementById("ssid").value = localStorage.getItem("qrssid")?localStorage.getItem("qrssid"):"";
@@ -59,7 +62,7 @@
               if(res.error && res.sess_expired) {
                 console.log("Delete ssid");
                 localStorage.removeItem("qrssid");
-                window.location='/user/login';
+                document.querySelector("body").style.display = "initial";
               }
             }
           }

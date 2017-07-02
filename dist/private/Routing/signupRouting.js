@@ -7,7 +7,7 @@ module.exports = {
         const formidable = require('formidable');
 
         const User = require('./../db/models/UserModel');
-				const Session = require('./../db/Models/SessionModel');
+				const Session = require('./../db/models/SessionModel');
 
 				const sessioning = require('./tools/cookieHandling');
 

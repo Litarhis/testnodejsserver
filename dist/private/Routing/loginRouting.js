@@ -6,8 +6,8 @@ module.exports = {
         const formidable = require('formidable');
 				const randomstring = require("randomstring");
 
-        const User = require('./../db/Models/UserModel');
-				const Session = require('./../db/Models/SessionModel');
+        const User = require('./../db/models/UserModel');
+				const Session = require('./../db/models/SessionModel');
 
 				const sessioning = require('./tools/cookieHandling');
 
